@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const treeSeed = require('./TreeSeed');
 
 const treeSchema = new Schema({
-    name: String
+    name: String,
+    leaves: [Number]
 });
 
 const Tree = mongoose.model('Tree', treeSchema);
