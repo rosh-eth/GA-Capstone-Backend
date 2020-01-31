@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const mongoURI = process.env.MONGODB_URI || `mongodb://localhost/trees`;
 
-mongoose.connect('mongodb://localhost/trees', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
+
+
 
 db.on ('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
