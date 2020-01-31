@@ -1,7 +1,7 @@
 require('./mongo');
 const express = require('express');
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 const treeRouter = require('./src/routes/Tree.routes');
 const treeController = require('./src/controller/Tree.controller');
 const treeModel = require('./src/models/Tree.model');
