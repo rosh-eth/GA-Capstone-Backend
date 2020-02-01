@@ -6,6 +6,8 @@ const treeRouter = require('./src/routes/Tree.routes');
 const treeController = require('./src/controller/Tree.controller');
 const treeModel = require('./src/models/Tree.model');
 
+app.use(express.static('frontend'));
+
 app.use('/tree', treeRouter);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
