@@ -4,10 +4,26 @@ const UserModel = require('../models/User.model');
 
 AssetRouter.use(express.json());
 
-AssetRouter.get('/add', async (req, res) => {    
+AssetRouter.post('/add', async (req, res) => {
+    console.log('session AssetRouter', req.session);
 
-console.log('session AssetRouter', req.session);
-res.status(200).send("asset created")
+
+    const user = await UserModel.findByIdAndUpdate({
+        _id: req.session.userId}, {
+        assets: {
+            btc: req.body.btc,
+            eth: req.body.eth,
+            dai: req.body.dai
+        }
+    }, {new: true});
+    console.log('asset', user);
+    if (user)
+        res.status(201).send({ user });
+    else
+        res.status(201).send("added asset");
+
+
+
 });
 
 
