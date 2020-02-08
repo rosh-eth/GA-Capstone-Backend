@@ -18,6 +18,21 @@ PublicRouter.post('/user/create', async (req, res) => {
 
 });
 
+PublicRouter.post('/user/login', async (req, res) => {
+    const user = await UserModel.find({
+        email: req.body.email, 
+        password: req.body.password
+    })
+    console.log("user", user);
+    if (user.length) {
+        req.session.userId = user[0]._id
+        res.status(200).send({message: "user login successful"});
+    }
+        else
+            res.status(404).send("could not find user");
+
+});
+
 
 
 
