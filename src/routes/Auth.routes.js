@@ -1,6 +1,7 @@
 const express = require('express');
 const AuthRouter = express();
 const axios = require('axios');
+const userModel = require('../models/User.model');
 
 AuthRouter.use(express.json());
 
@@ -10,6 +11,19 @@ AuthRouter.post('/login', async (req, res) => {
      console.log(req.session);
      
 });
+
+AuthRouter.get('/profile/:userid', async (req, res) => {
+  const user = await userModel.find({
+    _id: req.params.userid})
+
+    if (user.length) {
+      res.status(200).send({user: user[0]});
+    }
+    else {
+      res.status(404).send('not found');
+    }
+});
+
 
 AuthRouter.get('/logout', (req, res) => {
     req.session.destroy(function(err){
