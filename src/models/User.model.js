@@ -5,7 +5,7 @@ const userSchema = new Schema({
     email: String,
     password: String,
     assets: {
-        btc: Number,
+        bat: Number,
         eth: Number,
         dai: Number
     },
