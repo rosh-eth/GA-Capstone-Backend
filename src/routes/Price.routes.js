@@ -27,7 +27,18 @@ PriceRouter.get('/bat', async (req, res) => {
            usd_price: price.data.market_data.current_price.usd
      });
    return;
+  });
 
+   PriceRouter.get('/dai', async (req, res) => {    
+    const price = await axios.get('https://api.coingecko.com/api/v3/coins/ethereum/contract/0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359')
+     .catch(function (error) {
+       console.log(error);
+     })
+   
+     res.status(200).send({
+           usd_price: price.data.market_data.current_price.usd
+     });
+   return;
 });
 
 
