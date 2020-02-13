@@ -13,7 +13,8 @@ AssetRouter.post('/add', async (req, res) => {
             bat: req.body.btc,
             eth: req.body.eth,
             dai: req.body.dai
-        }
+        },
+        debt: 0
     }, {new: true});
     console.log('asset', user);
     if (user)
